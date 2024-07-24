@@ -1,4 +1,4 @@
-# cogninja Tool
+# Cogninja Tool
 
 **Cogninja CLI Tool** is a command-line utility that interacts with AWS Cognito to perform user sign-up, authenticate users, and obtain AWS credentials.
 
