@@ -44,3 +44,72 @@ Run the script with:
 
 ```bash
 python cogninja.py
+```
+
+
+
+
+
+
+
+#########################################################################################
+
+
+
+
+
+
+
+
+# Web Crawler for JavaScript Files and Amazon Cognito Information
+
+This script crawls web pages to find JavaScript files and extracts information related to Amazon Cognito from these files. It uses Selenium with Firefox in headless mode to perform web scraping and processing.
+
+## Features
+
+- **Crawl Web Pages:** Retrieve JavaScript files from the given URL.
+- **Extract Cognito Information:** Search for specific patterns related to Amazon Cognito in JavaScript files.
+- **Headless Operation:** Runs Firefox in headless mode to avoid GUI overhead.
+
+## Requirements
+
+- **Python 3.x**
+- **GeckoDriver:** Required for Selenium with Firefox. [Download GeckoDriver](https://github.com/mozilla/geckodriver/releases)
+
+## Dependencies
+
+- **Selenium**
+- **Colorama**
+- **Requests**
+
+## Installation
+
+1. **Clone the repository:**
+
+   ```bash
+   git clone https://github.com/your-repo/web-crawler.git
+   cd web-crawler
+   ```
+
+## Usage
+
+You can run the script with either a single URL or a file containing a list of URLs.
+
+### Command-Line Arguments
+
+- **`-u` or `--url`**: The URL of the web page to crawl.
+- **`-f` or `--file`**: A file containing a list of URLs to crawl (one URL per line).
+
+### Example Commands
+
+**Crawl a single URL:**
+
+```
+python crawler.py -u https://www.example.com
+```
+
+**Crawl URLs from a file:**
+
+```
+python crawler.py -f urls.txt
+```
