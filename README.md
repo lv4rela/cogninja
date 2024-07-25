@@ -19,14 +19,14 @@
 
 1. Clone the repository:
 
-    ```bash
-    git clone <repository-url>
-    cd <repository-directory>
+    ```
+     git clone https://github.com/lv4rela/cogninja.git
+     cd cogninja
     ```
 
 2. Install the required Python packages:
 
-    ```bash
+    ```
     pip install -r requirements.txt
     ```
 
@@ -42,7 +42,7 @@ Before running the script, ensure you have configured AWS CLI with the necessary
 
 Run the script with:
 
-```bash
+```
 python cogninja.py
 ```
 
@@ -86,9 +86,10 @@ This script crawls web pages to find JavaScript files and extracts information r
 
 1. **Clone the repository:**
 
-   ```bash
-   git clone https://github.com/your-repo/web-crawler.git
-   cd web-crawler
+   ```
+   git clone https://github.com/lv4rela/cogninja.git
+   cd cogninja
+   
    ```
 
 ## Usage
