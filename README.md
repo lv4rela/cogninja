@@ -39,7 +39,7 @@
 
 2. Install the required Python packages:
 
-    ```
+    ```bash
     pip install -r requirements.txt
     ```
 
@@ -97,13 +97,13 @@ You can run the script with either a single URL or a file containing a list of U
 
 **Crawl a single URL:**
 
-```
+```bash
 python cogcrawling.py -u https://www.example.com
 ```
 
 **Crawl URLs from a file:**
 
-```
+```bash
 python cogcrawling.py -f urls.txt
 ```
 -------------------------------------------------------------------------------------------------------------------------------------
