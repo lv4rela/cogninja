@@ -1,3 +1,4 @@
 selenium
 colorama
 requests
+boto3
