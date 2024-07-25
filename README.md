@@ -18,7 +18,6 @@
 ## Prerequisites
 
 - Python 3.x
-- AWS CLI configured with credentials
 - **GeckoDriver:** Required for Selenium with Firefox. [Download GeckoDriver](https://github.com/mozilla/geckodriver/releases)
 
 
