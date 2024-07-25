@@ -128,7 +128,7 @@ def main_menu():
     parser.add_argument('--username', type=str, required=True, help='Cognito username for the new user, if the user already exists, just use the same')
     parser.add_argument('--password', type=str, required=True, help='Cognito user password, if the user already exists, just use the same')
     parser.add_argument('--email', type=str, required=True, help='Email for the new user.')
-    parser.add_argument('--region', type=str, required=True, help='AWS Cognito region.')
+    parser.add_argument('--region', type=str, required=True, help='AWS Cognito region.(e.g., us-east-1)')
     parser.add_argument('--identity_pool_id', type=str, required=False, help='Cognito Identity Pool ID (required for Get_AWS_Credentials action)')
     parser.add_argument('--birthdate', type=str, required=False, help='[Optional] birthdate to use as an attribute for the new user')
     parser.add_argument('--given_name', type=str, required=False, help='[Optional] given_name to use as an attribute for the new user')
