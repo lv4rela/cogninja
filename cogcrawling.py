@@ -70,8 +70,49 @@ def process_page(driver, url):
 def ensure_http_prefix(url):
     return 'https://' + url if not url.startswith(('http://', 'https://')) else url
 
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Crawl web pages for JavaScript files and extract Amazon Cognito information.")
+def main_menu():
+    ninja_ascii = r'''
+                                    ####///.                                   
+                                #########////////*                              
+                           ##############//////////////                         
+                      ###################///////////////                        
+                .########################///////////////                        
+            ##########################%%%%%/////////////   ######/////          
+            ##################%%%%%%%%%%%%%%%%%%%%%%////   ######/////          
+            #########%%%%%%%%%%(                           ######/////          
+            #####/////*                                    ######/////          
+            #####/////*                                    ######/////          
+            #####/////*        ,#########////////*         ######/////          
+            #####/////*       ###########//////////        ######/////          
+            #####/////*       ###########//////////        ######/////          
+            #####/////*       ###########//////////        ######/////          
+            #####/////*       ###########//////////        ######/////          
+            #####/////*       ###########//////////        ######/////          
+            #####/////*             *####////              ######/////          
+            #####/////*                                    ######/////          
+            #####/////*                                   ,,*####/////          
+            #####/////*     .,,,,,              ,,,,,,,,,,*///////////          
+            #####/////*  #######,,,,,,,,,,,,,,,,,,////////////////////          
+             ####/////*  ###############(////////////////////////////           
+                         ################///////////////////////                
+                         ################//////////////////                     
+                            #############////////////*                          
+                                 ########///////.                               
+                                      (##//                                     
+
+                
+                      ____            _   _ _        _       
+                     / ___|___   __ _| \ | (_)_ __  (_) __ _ 
+                    | |   / _ \ / _` |  \| | | '_ \ | |/ _` |
+                    | |__| (_) | (_| | |\  | | | | || | (_| |
+                    \____\___/ \__, |_| \_|_|_| |_|/ |\__,_|
+                                |___/             |__/       
+    '''
+    print(f"{Fore.CYAN}{ninja_ascii}")
+    print(f"{Fore.YELLOW}[INFO] - Welcome to Cogcrowling - Search for cognito data in JS files")
+    print(f"{Fore.YELLOW}[INFO] - Author: {Fore.WHITE}@lv4rela\n")
+
+    parser = argparse.ArgumentParser(description='Cogninja - HELP')
     parser.add_argument("-u", "--url", help="The URL of the web page to crawl")
     parser.add_argument("-f", "--file", help="A file containing a list of URLs to crawl")
     args = parser.parse_args()
@@ -93,3 +134,5 @@ if __name__ == "__main__":
             print(f"{Fore.YELLOW}INFO: Please provide either a URL with -u or a file with -f.")
     finally:
         driver.quit()
+if __name__ == "__main__":
+    main_menu()
