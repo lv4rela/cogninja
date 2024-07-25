@@ -15,7 +15,7 @@
 
 **Common Security Problems**
 
-- *Misconfigurations in Amazon Cognito can lead to significant security vulnerabilities. Some common security problems include:
+- Misconfigurations in Amazon Cognito can lead to significant security vulnerabilities. Some common security problems include:
 
 - **Leaving Sign-Up Enabled**: If the sign-up feature is enabled without appropriate restrictions, unauthorized users may create accounts. This can be exploited to gain unauthorized access to the application or abuse the authentication system. To mitigate this risk, ensure that sign-up is restricted to trusted users or managed through custom workflows.
 
