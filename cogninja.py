@@ -122,7 +122,7 @@ def main_menu():
     print(f"{Fore.YELLOW}[INFO] - Welcome to Cogninja - AWS Cognito Missconfig Exploit")
     print(f"{Fore.YELLOW}[INFO] - Author: {Fore.WHITE}@lv4rela\n")
 
-    parser = argparse.ArgumentParser(description='Cogninja - AWS Cognito User Management Script')
+    parser = argparse.ArgumentParser(description='Cogninja - HELP')
     parser.add_argument('--user_pool_client_id', type=str, required=True, help='ID of the Cognito user pool client.')
     parser.add_argument('--user_pool_id', type=str, required=True, help='ID of the Cognito user pool.')
     parser.add_argument('--username', type=str, required=True, help='Cognito username for the new user, if the user already exists, just use the same')
