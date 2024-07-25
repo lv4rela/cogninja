@@ -4,14 +4,14 @@ from botocore.exceptions import ClientError
 from colorama import Fore, Style, init
 init(autoreset=True)
 
-def sign_up_user(cognito_idp_client, user_pool_client_id, username, password, email):
+def sign_up_user(cognito_idp_client, user_pool_client_id, username, password, email,birthdate):
     try:
         response = cognito_idp_client.sign_up(
             ClientId=user_pool_client_id,
             Username=username,
             Password=password,
             UserAttributes=[
-                {'Name': 'email', 'Value': email},
+                {'Name': 'email', 'Value': email},{'Name':'birthDate', 'Value': birthdate}
             ]
         )
         print(f"{Fore.GREEN}[USER SIGNED UP SUCCESSFULLY]")
@@ -120,12 +120,13 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description='Cogninja - HELP')
     parser.add_argument('--user_pool_client_id', type=str, required=True, help='ID of the Cognito user pool client.')
-    parser.add_argument('--user_pool_id', type=str, required=True, help='ID of the Cognito user pool.')
+    parser.add_argument('--user_pool_id', type=str, required=False, help='ID of the Cognito user pool.')
     parser.add_argument('--username', type=str, required=True, help='Cognito username for the new user, if the user already exist, just use the same')
     parser.add_argument('--password', type=str, required=True, help='Cognito user password, if the user already exist, just use the same')
     parser.add_argument('--email', type=str, required=True, help='Email for the new user.')
     parser.add_argument('--region', type=str, required=True, help='AWS Cognito region.')
-    parser.add_argument('--identity_pool_id', type=str, required=True, help='Cognito Identity ID (required for Get_AWS_Credentials action)')
+    parser.add_argument('--identity_pool_id', type=str, required=False, help='Cognito Identity ID (required for Get_AWS_Credentials action)')
+    parser.add_argument('--birthdate', type=str, required=False, help='birthdate to use as attribute for the new user')
 
     args = parser.parse_args()
 
@@ -134,7 +135,7 @@ if __name__ == "__main__":
     cognito_identity_client = boto3.client('cognito-identity', region_name=args.region)
 
     # Try to sign up the user
-    sign_up_success = sign_up_user(cognito_idp_client, args.user_pool_client_id, args.username, args.password, args.email)
+    sign_up_success = sign_up_user(cognito_idp_client, args.user_pool_client_id, args.username, args.password, args.email, args.birthdate)
     
     # Always attempt to get tokens
     access_token, id_token = get_access_token(cognito_idp_client, args.user_pool_client_id, args.username, args.password)
