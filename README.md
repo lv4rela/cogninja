@@ -32,7 +32,7 @@
 
 1. Clone the repository:
 
-    ```
+    ```bash
      git clone https://github.com/lv4rela/cogninja.git
      cd cogninja
     ```
@@ -59,7 +59,7 @@ Before running the script, ensure you have got from **Cogcrawling** following de
 
 Run the script with:
 
-```
+```bash
 python cogninja.py \
   --user_pool_client_id abcdef1234567890abcdef1234567890 \
   --user_pool_id us-east-1_ExamplePoolId \
@@ -73,7 +73,8 @@ python cogninja.py \
 **Cogcrawling**
 
 Before running the script, ensure you have changed the GeckoDriver path to your own.
-```
+
+```python
 def initialize_driver():
     options = Options()
     options.add_argument("--headless") 
