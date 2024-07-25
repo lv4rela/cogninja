@@ -72,6 +72,19 @@ python cogninja.py \
 ```
 **Cogcrawling**
 
+Before running the script, ensure you have changed the GeckoDriver path to your own.
+```
+def initialize_driver():
+    options = Options()
+    options.add_argument("--headless") 
+    options.add_argument("--disable-gpu")
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
+    service = Service("/path/to/geckodriver") <---------
+    return webdriver.Firefox(service=service, options=options)
+```
+
+
 You can run the script with either a single URL or a file containing a list of URLs.
 
 ### Command-Line Arguments
