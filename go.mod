@@ -1,6 +1,6 @@
 module github.com/lv4rela/cogninja
 
-go 1.22.4
+go 1.22
 
 require (
 	github.com/alexflint/go-arg v1.5.1 // indirect
