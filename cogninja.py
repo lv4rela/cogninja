@@ -128,7 +128,7 @@ def main_menu():
 
     parser = argparse.ArgumentParser(description='Cogninja - AWS Cognito User Management Script')
     parser.add_argument('--user_pool_client_id', type=str, required=True, help='ID of the Cognito user pool client.')
-    parser.add_argument('--user_pool_id', type=str, required=True, help='ID of the Cognito user pool.')
+    parser.add_argument('--user_pool_id', type=str, required=False, help='ID of the Cognito user pool.')
     parser.add_argument('--username', type=str, required=True, help='Cognito username for the new user, if the user already exists, just use the same')
     parser.add_argument('--password', type=str, required=True, help='Cognito user password, if the user already exists, just use the same')
     parser.add_argument('--email', type=str, required=True, help='Email for the new user.')
