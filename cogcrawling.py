@@ -6,6 +6,7 @@ import re
 import argparse
 from urllib.parse import urljoin
 from colorama import Fore, init
+from multiprocessing import Pool
 
 init(autoreset=True)
 
@@ -15,7 +16,7 @@ def initialize_driver():
     options.add_argument("--disable-gpu")
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
-    service = Service("/usr/local/bin/geckodriver") 
+    service = Service("/usr/local/bin/geckodriver")
     return webdriver.Firefox(service=service, options=options)
 
 def fetch_js_files(driver, url):
@@ -51,7 +52,8 @@ def extract_cognito_info(content, source):
                 for value in values:
                     print(f"{Fore.MAGENTA}{key}: {Fore.WHITE}{value}")
 
-def process_page(driver, url):
+def process_page(url):
+    driver = initialize_driver()
     url = ensure_http_prefix(url)
     try:
         driver.get(url)
@@ -68,6 +70,8 @@ def process_page(driver, url):
                 print(f"{Fore.RED}Error fetching JS file: {Fore.WHITE}{js_file} - {e}")
     except Exception as e:
         print(f"{Fore.RED}Error fetching main page: {Fore.WHITE}{url} - {e}")
+    finally:
+        driver.quit()
 
 def ensure_http_prefix(url):
     return 'https://' + url if not url.startswith(('http://', 'https://')) else url
@@ -119,22 +123,22 @@ def main_menu():
     parser.add_argument("-f", "--file", help="A file containing a list of URLs to crawl")
     args = parser.parse_args()
 
-    driver = initialize_driver()
-    try:
-        if args.url:
-            process_page(driver, args.url)
-        elif args.file:
-            try:
-                with open(args.file, 'r') as f:
-                    urls = [line.strip() for line in f.readlines()]
-                    for url in urls:
-                        if url:
-                            process_page(driver, url)
-            except FileNotFoundError:
-                print(f"{Fore.RED}Error: File {args.file} not found.")
-        else:
-            print(f"{Fore.YELLOW}INFO: Please provide either a URL with -u or a file with -f.")
-    finally:
-        driver.quit()
+    if args.url:
+        urls = [args.url]
+    elif args.file:
+        try:
+            with open(args.file, 'r') as f:
+                urls = [line.strip() for line in f.readlines()]
+        except FileNotFoundError:
+            print(f"{Fore.RED}Error: File {args.file} not found.")
+            return
+    else:
+        print(f"{Fore.YELLOW}INFO: Please provide either a URL with -u or a file with -f.")
+        return
+
+    max_processes = 10  #maximos simultaneous process
+    with Pool(processes=max_processes) as pool:
+        pool.map(process_page, urls)
+
 if __name__ == "__main__":
     main_menu()
