@@ -6,17 +6,21 @@ from colorama import Fore, Style, init
 init(autoreset=True)
 
 def sign_up_user(cognito_idp_client, user_pool_client_id, username, password, email, birthdate, given_name, family_name):
+    user_attributes = [{'Name': 'email', 'Value': email}]
+    
+    if birthdate:
+        user_attributes.append({'Name': 'birthdate', 'Value': birthdate})
+    if given_name:
+        user_attributes.append({'Name': 'given_name', 'Value': given_name})
+    if family_name:
+        user_attributes.append({'Name': 'family_name', 'Value': family_name})
+
     try:
         response = cognito_idp_client.sign_up(
             ClientId=user_pool_client_id,
             Username=username,
             Password=password,
-            UserAttributes=[
-                {'Name': 'email', 'Value': email},
-                {'Name': 'birthdate', 'Value': birthdate},
-                {'Name': 'given_name', 'Value': given_name},
-                {'Name': 'family_name', 'Value': family_name}
-            ]
+            UserAttributes=user_attributes
         )
         print(f"{Fore.GREEN}[USER SIGNED UP SUCCESSFULLY]")
         return True
@@ -122,7 +126,7 @@ def main_menu():
     print(f"{Fore.YELLOW}[INFO] - Welcome to Cogninja - AWS Cognito Missconfig Exploit")
     print(f"{Fore.YELLOW}[INFO] - Author: {Fore.WHITE}@lv4rela\n")
 
-    parser = argparse.ArgumentParser(description='Cogninja - HELP')
+    parser = argparse.ArgumentParser(description='Cogninja - AWS Cognito User Management Script')
     parser.add_argument('--user_pool_client_id', type=str, required=True, help='ID of the Cognito user pool client.')
     parser.add_argument('--user_pool_id', type=str, required=True, help='ID of the Cognito user pool.')
     parser.add_argument('--username', type=str, required=True, help='Cognito username for the new user, if the user already exists, just use the same')
