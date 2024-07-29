@@ -11,6 +11,7 @@ import (
 	"regexp"
 	"strings"
 	"sync"
+	"time"
 
 	"github.com/alexflint/go-arg"
 	"github.com/fatih/color"
@@ -146,7 +147,11 @@ func scanUrl(browser *rod.Browser, wg *sync.WaitGroup, url string) {
 		go findCredentials(reply.Body, url, wg)
 	})()
 
-	page.MustNavigate(url).MustWaitStable()
+	if err := page.Navigate(url); err != nil {
+	}
+
+	page.WaitStable(time.Second * 4)
+
 }
 
 func urlsFromFile(fname string) []string {
@@ -167,6 +172,11 @@ func urlsFromFile(fname string) []string {
 
 	return lines
 }
+
+//TODO:
+// print full URL on match
+// show progress for each URL somehow...
+// print with colors and log just the text
 
 func main() {
 
