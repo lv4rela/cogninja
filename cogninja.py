@@ -5,7 +5,7 @@ from colorama import Fore, Style, init
 
 init(autoreset=True)
 
-def sign_up_user(cognito_idp_client, user_pool_client_id, username, password, email, birthdate, given_name, family_name):
+def sign_up_user(cognito_idp_client, user_pool_client_id, username, password, email, birthdate, given_name, family_name, phone_number):
     user_attributes = [{'Name': 'email', 'Value': email}]
     
     if birthdate:
@@ -14,6 +14,9 @@ def sign_up_user(cognito_idp_client, user_pool_client_id, username, password, em
         user_attributes.append({'Name': 'given_name', 'Value': given_name})
     if family_name:
         user_attributes.append({'Name': 'family_name', 'Value': family_name})
+    if phone_number:
+        user_attributes.append({'Name': 'phone_number', 'Value': phone_number})
+
 
     try:
         response = cognito_idp_client.sign_up(
@@ -137,6 +140,7 @@ def main_menu():
     parser.add_argument('--birthdate', type=str, required=False, help='[Optional] birthdate to use as an attribute for the new user')
     parser.add_argument('--given_name', type=str, required=False, help='[Optional] given_name to use as an attribute for the new user')
     parser.add_argument('--family_name', type=str, required=False, help='[Optional] family_name to use as an attribute for the new user')
+    parser.add_argument('--phone_number', type=str, required=False, help='[Optional] phone_number to use as an attribute for the new user')
 
     args = parser.parse_args()
 
@@ -153,7 +157,8 @@ def main_menu():
         args.email,
         args.birthdate,
         args.given_name,
-        args.family_name
+        args.family_name,
+        args.family_name,
     )
     
     # Always attempt to get tokens
